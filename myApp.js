@@ -1,8 +1,17 @@
 let express = require('express');
+const bodyParser = require('body-parser');
 let app = express();
 require('dotenv').config();
 
 console.log("Hello World");
+
+// Middleware
+app.use(bodyParser.urlencoded({extended: false}))
+
+app.use('/json', (req, res, next) => {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
 
 // Serve static files
 app.use('/public', express.static(__dirname + '/public'));
@@ -12,12 +21,6 @@ app.get('/', (req, res) => {
   const absolutePath = __dirname + '/views/index.html'
   res.sendFile(absolutePath);
 })
-
-// Middleware
-app.use('/json', (req, res, next) => {
-  console.log(`${req.method} ${req.path} - ${req.ip}`);
-  next();
-});
 
 app.get('/json', (req, res) => {
   const mySecret = process.env['MESSAGE_STYLE'];
