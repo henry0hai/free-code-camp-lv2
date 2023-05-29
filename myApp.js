@@ -36,6 +36,7 @@ app.get('/now', (req, res, next) => {
   res.send({time: req.time});
 });
 
+// Route parameters
 // route_path: '/user/:userId/book/:bookId'
 // actual_request_URL: '/user/546/book/6754'
 // req.params: {userId: '546', bookId: '6754'}
@@ -43,11 +44,13 @@ app.get('/:word/echo', (req, res) => {
   res.send({echo: req.params.word});
 });
 
-
-
-
-
-
+// Query parameter
+// route_path: '/library'
+// actual_request_URL: '/library?userId=546&bookId=6754'
+// req.query: {userId: '546', bookId: '6754'}
+app.get('/name', (req, res) => {
+  res.send({name: req.query.first + " " + req.query.last});
+});
 
 
 
