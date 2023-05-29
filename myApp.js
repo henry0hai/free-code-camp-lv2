@@ -1,6 +1,6 @@
-let express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
-let app = express();
+const app = express();
 require('dotenv').config();
 
 console.log("Hello World");
@@ -55,7 +55,9 @@ app.get('/name', (req, res) => {
   res.send({name: req.query.first + " " + req.query.last});
 });
 
-
+app.post('/name', (req, res) => {
+  res.send({name: req.body.first + " " + req.body.last});
+});
 
 
 
