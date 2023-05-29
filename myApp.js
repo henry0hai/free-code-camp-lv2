@@ -36,6 +36,15 @@ app.get('/now', (req, res, next) => {
   res.send({time: req.time});
 });
 
+// route_path: '/user/:userId/book/:bookId'
+// actual_request_URL: '/user/546/book/6754'
+// req.params: {userId: '546', bookId: '6754'}
+app.get('/:word/echo', (req, res) => {
+  res.send({echo: req.params.word});
+});
+
+
+
 
 
 
